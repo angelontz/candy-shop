@@ -10,7 +10,7 @@ function Header() {
   const { user, logout } = useContext(AuthContext);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  const { user } = useContext(AuthContext);
+  
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
