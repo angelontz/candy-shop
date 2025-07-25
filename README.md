@@ -2,6 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Environment Variables
+
+The login page expects the following variables in a `.env` file at the project root:
+
+- `REACT_APP_GOOGLE_CLIENT_ID` – Client ID for Google OAuth
+- `REACT_APP_FACEBOOK_APP_ID` – Facebook application ID
+
+Restart the development server after editing the `.env` file so that changes take effect.
+
+
 ## Available Scripts
 
 In the project directory, you can run:

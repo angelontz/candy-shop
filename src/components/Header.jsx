@@ -1,14 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
+import { AuthContext } from '../context/AuthContext';
 
-// Optional: Replace this with real cart context if you have one
-const CartContext = React.createContext({ cartItems: [] });
+import { CartContext } from '../App';
 
 function Header() {
   const { cartItems } = useContext(CartContext);
+  const { user, logout } = useContext(AuthContext);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { user } = useContext(AuthContext);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -28,6 +30,17 @@ function Header() {
         <Link to="/cart" className={isActive('/cart') ? 'active cart-link' : 'cart-link'}>
           Cart
           {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+        </Link>
+        {user ? (
+          <>
+            <Link to="/profile" className={isActive('/profile') ? 'active' : ''}>Profile</Link>
+            <button onClick={logout} className="logout-btn">Logout</button>
+          </>
+        ) : (
+          <Link to="/login" className={isActive('/login') ? 'active' : ''}>Login</Link>
+        )}
+        <Link to={user ? '/profile' : '/login'} className={isActive('/profile') ? 'active' : ''}>
+          {user ? user.name : 'Login'}
         </Link>
       </div>
 

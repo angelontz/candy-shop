@@ -8,6 +8,9 @@ import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
 import CartPage from './pages/CartPage';
 import Checkout from './pages/Checkout';
+import Login from './pages/Login';
+import Profile from './pages/Profile';
+import { AuthProvider } from './context/AuthContext';
 
 export const CartContext = React.createContext();
 
@@ -19,17 +22,21 @@ function App() {
   return (
     <CartContext.Provider value={{ cartItems, setCartItems }}>
       <Router>
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/checkout" element={<Checkout />} />
-          </Routes>
-        </main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
+          </main>
+          <Footer />
+        </AuthProvider>
       </Router>
     </CartContext.Provider>
   );
