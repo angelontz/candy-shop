@@ -21,10 +21,10 @@ Skipping this step can lead to missing modules such as `@react-oauth/google`.
 
 ## Environment Variables
 
-The login page expects the following variables in a `.env` file at the project root:
+The login page expects the following variable in a `.env` file at the project root:
 
 - `REACT_APP_GOOGLE_CLIENT_ID` – Client ID for Google OAuth
-- `REACT_APP_FACEBOOK_APP_ID` – Facebook application ID
+
 
 Restart the development server after editing the `.env` file so that changes take effect.
 

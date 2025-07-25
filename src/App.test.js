@@ -1,8 +1,18 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+jest.mock('react-router-dom', () => ({
+  BrowserRouter: ({ children }) => <div>{children}</div>,
+  Routes: ({ children }) => <div>{children}</div>,
+  Route: ({ element }) => element,
+  useNavigate: () => jest.fn(),
+  Link: ({ children }) => <div>{children}</div>,
+  useLocation: () => ({ pathname: '/' }),
+  Navigate: ({ to }) => <div>Navigate to {to}</div>,
+}), { virtual: true });
+
+test('renders header', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByRole('banner')).toBeInTheDocument();
 });
