@@ -2,6 +2,23 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Setup
+
+Install dependencies before starting the development server:
+
+```bash
+npm install
+```
+
+If you run into peer dependency errors, try:
+
+```bash
+npm install --legacy-peer-deps
+```
+
+Skipping this step can lead to missing modules such as `@react-oauth/google`.
+
+
 ## Environment Variables
 
 The login page expects the following variables in a `.env` file at the project root:
