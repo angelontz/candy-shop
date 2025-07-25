@@ -12,6 +12,11 @@ jest.mock('react-router-dom', () => ({
   useLocation: () => ({ pathname: '/' }),
   Navigate: ({ to }) => <div>Navigate to {to}</div>,
 }), { virtual: true });
+jest.mock('@react-oauth/google', () => ({
+  GoogleOAuthProvider: ({ children }) => <div>{children}</div>,
+  GoogleLogin: () => <div>GoogleLogin</div>,
+}));
+
 
 beforeEach(() => {
   window.history.pushState({}, '', '/login');

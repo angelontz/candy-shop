@@ -12,6 +12,11 @@ jest.mock('react-router-dom', () => ({
   Navigate: ({ to }) => <div>Navigate to {to}</div>,
 }), { virtual: true });
 
+jest.mock('@react-oauth/google', () => ({
+  GoogleOAuthProvider: ({ children }) => <div>{children}</div>,
+  GoogleLogin: () => <div>GoogleLogin</div>,
+}));
+
 test('renders header', () => {
   render(<App />);
   expect(screen.getByRole('banner')).toBeInTheDocument();
