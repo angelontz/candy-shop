@@ -16,7 +16,7 @@ If you run into peer dependency errors, try:
 npm install --legacy-peer-deps
 ```
 
-Skipping this step can lead to missing modules such as `@react-oauth/google`.
+Skipping this step can lead to missing modules such as `@react-oauth/google` or `react-responsive-carousel`.
 
 
 ## Environment Variables
