@@ -1,16 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import './Header.css';
-import { AuthContext } from '../context/AuthContext';
 
-import { CartContext } from '../App';
-
-function Header() {
-  const { cartItems } = useContext(CartContext);
-  const { user, logout } = useContext(AuthContext);
-  const [mobileOpen, setMobileOpen] = useState(false);
+function Header({ cartItems = [], user, logout, mobileOpen, setMobileOpen }) {
   const location = useLocation();
-
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const isActive = (path) => location.pathname === path;
