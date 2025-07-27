@@ -10,7 +10,6 @@ function Header() {
   const { user, logout } = useContext(AuthContext);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -36,10 +35,11 @@ function Header() {
             <Link to="/profile" className={isActive('/profile') ? 'active' : ''}>Profile</Link>
             <button onClick={logout} className="logout-btn">Logout</button>
           </>
-        ) : (
-          <Link to="/login" className={isActive('/login') ? 'active' : ''}>Login</Link>
-        )}
-        <Link to={user ? '/profile' : '/login'} className={isActive('/profile') ? 'active' : ''}>
+        ) : null}
+        <Link
+          to={user ? '/profile' : '/login'}
+          className={isActive(user ? '/profile' : '/login') ? 'active' : ''}
+        >
           {user ? user.name : 'Login'}
         </Link>
       </div>

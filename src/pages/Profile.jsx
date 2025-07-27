@@ -13,7 +13,8 @@ function Profile() {
     <div>
       <h1>Profile</h1>
       <p>Welcome {user.name}</p>
-      <button onClick={logout}>Logout</button>
+      
+      <button onClick={logout} className="logout-btn">Logout</button>
     </div>
   );
 }

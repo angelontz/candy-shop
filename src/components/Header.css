@@ -32,6 +32,20 @@
   transition: color 0.2s ease;
 }
 
+.logout-btn {
+  background: none;
+  border: none;
+  color: #e91e63;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.logout-btn:hover {
+  color: #a3165f;
+}
+
 .navbar-right a:hover,
 .navbar-right a.active {
   color: #a3165f;
