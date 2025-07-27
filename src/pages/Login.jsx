@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { GoogleLogin } from '@react-oauth/google';
-import jwtDecode from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 
 function Login() {
@@ -17,7 +17,7 @@ function Login() {
   const handleGoogleSuccess = (credentialResponse) => {
     if (credentialResponse.credential) {
       const decoded = jwtDecode(credentialResponse.credential);
-      login({ name: decoded.name });
+      login({ name: decoded.name || decoded.email || 'Unknown User' });
     }
   };
 
@@ -32,7 +32,14 @@ function Login() {
         />
         <button type="submit">Login</button>
       </form>
-      <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => {}} />
+      <GoogleLogin
+        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+        onSuccess={handleGoogleSuccess}
+        onError={(error) => {
+          console.error('Google login failed:', error);
+          alert('Google login failed. Please try again.');
+        }}
+      />
     </div>
   );
 }

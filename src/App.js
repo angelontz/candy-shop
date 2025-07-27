@@ -12,12 +12,12 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import { AuthProvider } from './context/AuthContext';
 
+// CartContext provides global state for cart items and actions throughout the app.
 export const CartContext = React.createContext();
+const initialCartItems = [];
 
 function App() {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Candy', quantity: 2 }, // dummy data for now
-  ]);
+  const [cartItems, setCartItems] = useState(initialCartItems);
 
   return (
     <CartContext.Provider value={{ cartItems, setCartItems }}>

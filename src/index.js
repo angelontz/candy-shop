@@ -7,13 +7,21 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider } from './context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
 root.render(
   <React.StrictMode>
-     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-      <AuthProvider>
+    {clientId ? (
+      <GoogleOAuthProvider clientId={clientId}>
         <App />
-      </AuthProvider>
-    </GoogleOAuthProvider>
+      </GoogleOAuthProvider>
+    ) : (
+      <div style={{ color: 'red', textAlign: 'center', marginTop: '2rem' }}>
+        Error: Google Client ID is not set. Please set REACT_APP_GOOGLE_CLIENT_ID in your environment variables.
+      </div>
+    )}
+reportWebVitals(console.log);
+);
   </React.StrictMode>
 );
 
