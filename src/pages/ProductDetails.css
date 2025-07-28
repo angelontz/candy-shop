@@ -19,6 +19,18 @@
 .full-description {
   margin: 1rem 0;
 }
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.quantity-selector button {
+  padding: 0.25rem 0.5rem;
+}
+
 
 .add-to-cart-btn {
   background-color: #ffecf2;
