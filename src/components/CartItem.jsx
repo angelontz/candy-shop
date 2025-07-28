@@ -18,6 +18,10 @@ function CartItem({ item }) {
     );
     setCartItems(updated);
   };
+  const removeItem = () => {
+    setCartItems(cartItems.filter((ci) => ci.id !== item.id));
+  };
+
 
   return (
     <div className="product-card">
@@ -29,6 +33,7 @@ function CartItem({ item }) {
         <span>{item.quantity.toFixed(1)} kg</span>
         <button onClick={increase}>+</button>
       </div>
+      <button className="remove-btn" onClick={removeItem}>Remove</button>
     </div>
   );
 }
