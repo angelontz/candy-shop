@@ -36,7 +36,7 @@ function ProductDetails() {
       <div className="product-card">
         <img src={product.image} alt={product.name} />
         <h2>{product.name}</h2>
-        <p>${product.price.toFixed(2)}</p>
+        <p>€{product.price.toFixed(2)}</p>
         <p className="full-description">{fullDescription}</p>
         <button className="add-to-cart-btn" onClick={addToCart}>
           Add to Cart

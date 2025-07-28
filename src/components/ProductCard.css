@@ -19,6 +19,11 @@
   font-size: 1.1rem;
 }
 
+.product-card .description {
+  margin: 0.5rem 0;
+  min-height: 2.5rem;
+}
+
 .product-card a {
   display: inline-block;
   margin-top: 0.5rem;
