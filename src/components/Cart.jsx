@@ -1,5 +1,21 @@
+import React, { useContext } from 'react';
+import { CartContext } from '../App';
+import CartItem from './CartItem';
+
 function Cart() {
-  return <div>Cart</div>;
+  const { cartItems } = useContext(CartContext);
+
+  if (cartItems.length === 0) {
+    return <p>Your cart is empty.</p>;
+  }
+
+  return (
+    <div className="product-grid">
+      {cartItems.map((item) => (
+        <CartItem key={item.id} item={item} />
+      ))}
+    </div>
+  );
 }
 
 export default Cart;
