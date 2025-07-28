@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import './Header.css';
 
 function Header({ cartItems = [], user, logout, mobileOpen, setMobileOpen }) {
   const location = useLocation();
