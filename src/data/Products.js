@@ -1,3 +1,5 @@
+const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.";
+
 const products = [
   {
     id: 1,
@@ -6,7 +8,8 @@ const products = [
     subcategory: "Dark Chocolate",
     price: 2.12,
     image: "https://picsum.photos/seed/darkchocolate0/300/200",
-    description: "Classic and classic dark chocolate!"
+    description: "Classic and classic dark chocolate!",
+    fullDescription: lorem
   },
   {
     id: 2,
@@ -15,7 +18,8 @@ const products = [
     subcategory: "Dark Chocolate",
     price: 2.86,
     image: "https://picsum.photos/seed/darkchocolate1/300/200",
-    description: "Tangy and tangy dark chocolate!"
+    description: "Tangy and tangy dark chocolate!",
+    fullDescription: lorem
   },
   {
     id: 3,
@@ -24,7 +28,8 @@ const products = [
     subcategory: "Dark Chocolate",
     price: 3.75,
     image: "https://picsum.photos/seed/darkchocolate2/300/200",
-    description: "Intense and sweet dark chocolate!"
+    description: "Intense and sweet dark chocolate!",
+    fullDescription: lorem
   },
   {
     id: 4,
@@ -33,7 +38,8 @@ const products = [
     subcategory: "Dark Chocolate",
     price: 2.41,
     image: "https://picsum.photos/seed/darkchocolate3/300/200",
-    description: "Zesty and chewy dark chocolate!"
+    description: "Zesty and chewy dark chocolate!",
+    fullDescription: lorem
   },
   {
     id: 5,
@@ -42,7 +48,8 @@ const products = [
     subcategory: "Dark Chocolate",
     price: 3.2,
     image: "https://picsum.photos/seed/darkchocolate4/300/200",
-    description: "Sweet and zesty dark chocolate!"
+    description: "Sweet and zesty dark chocolate!",
+    fullDescription: lorem
   },
   {
     id: 6,
@@ -51,7 +58,8 @@ const products = [
     subcategory: "Dark Chocolate",
     price: 2.33,
     image: "https://picsum.photos/seed/darkchocolate5/300/200",
-    description: "Classic and soft dark chocolate!"
+    description: "Classic and soft dark chocolate!",
+    fullDescription: lorem
   },
   {
     id: 7,
@@ -60,7 +68,8 @@ const products = [
     subcategory: "Dark Chocolate",
     price: 1.96,
     image: "https://picsum.photos/seed/darkchocolate6/300/200",
-    description: "Soft and sweet dark chocolate!"
+    description: "Soft and sweet dark chocolate!",
+    fullDescription: lorem
   },
   {
     id: 8,
@@ -69,7 +78,8 @@ const products = [
     subcategory: "Dark Chocolate",
     price: 2.43,
     image: "https://picsum.photos/seed/darkchocolate7/300/200",
-    description: "Classic and crunchy dark chocolate!"
+    description: "Classic and crunchy dark chocolate!",
+    fullDescription: lorem
   },
   {
     id: 9,
@@ -78,7 +88,8 @@ const products = [
     subcategory: "Dark Chocolate",
     price: 3.53,
     image: "https://picsum.photos/seed/darkchocolate8/300/200",
-    description: "Zesty and classic dark chocolate!"
+    description: "Zesty and classic dark chocolate!",
+    fullDescription: lorem
   },
   {
     id: 10,
@@ -87,7 +98,8 @@ const products = [
     subcategory: "Dark Chocolate",
     price: 4.82,
     image: "https://picsum.photos/seed/darkchocolate9/300/200",
-    description: "Soft and delicious dark chocolate!"
+    description: "Soft and delicious dark chocolate!",
+    fullDescription: lorem
   },
   {
     id: 11,

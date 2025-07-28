@@ -1,6 +1,7 @@
 import products from '../data/Products';
 import ProductCard from '../components/ProductCard';
 import { useLocation } from 'react-router-dom';
+import './Products.css'
 
 function Products() {
   const location = useLocation();
