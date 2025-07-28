@@ -1,0 +1,35 @@
+.product-details {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.product-details .product-card {
+  width: 50%;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  text-align: center;
+}
+
+.product-details .product-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.full-description {
+  margin: 1rem 0;
+}
+
+.add-to-cart-btn {
+  background-color: #ffecf2;
+  color: #e91e63;
+  border: 1px solid #e91e63;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.add-to-cart-btn:hover {
+  color: #a3165f;
+}

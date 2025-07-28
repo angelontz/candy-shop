@@ -10,6 +10,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => jest.fn(),
   Link: ({ children }) => <div>{children}</div>,
   useLocation: () => ({ pathname: '/' }),
+  useParams: () => ({ id: '1' }),
   Navigate: ({ to }) => <div>Navigate to {to}</div>,
 }), { virtual: true });
 jest.mock('@react-oauth/google', () => ({
