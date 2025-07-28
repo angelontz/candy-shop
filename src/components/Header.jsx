@@ -8,6 +8,14 @@ function Header({ cartItems = [], user, logout, mobileOpen, setMobileOpen }) {
 
   const isActive = (path) => location.pathname === path;
 
+  const categories = [
+    { name: 'Chocolate', subs: ['Dark Chocolate', 'Milk Chocolate'] },
+    { name: 'Gummies', subs: ['Bears', 'Worms'] },
+    { name: 'Hard Candy', subs: ['Lollipops', 'Butterscotch'] },
+    { name: 'Sour Candy', subs: ['Sour Belts', 'Sour Gummies'] },
+    { name: 'Licorice', subs: ['Red Licorice', 'Black Licorice'] },
+  ];
+
   return (
     <header className="navbar">
       <div className="navbar-left">
@@ -18,7 +26,21 @@ function Header({ cartItems = [], user, logout, mobileOpen, setMobileOpen }) {
 
       <div className={`navbar-right ${mobileOpen ? 'open' : ''}`}>
         <Link to="/" className={isActive('/') ? 'active' : ''}>Home</Link>
-        <Link to="/products" className={isActive('/products') ? 'active' : ''}>Products</Link>
+        <div className="dropdown">
+          <Link to="/products" className={isActive('/products') ? 'active' : ''}>Products</Link>
+          <div className="dropdown-menu">
+            {categories.map((cat) => (
+              <div key={cat.name} className="dropdown-category">
+                <span>{cat.name}</span>
+                <div className="sub-menu">
+                  {cat.subs.map((sub) => (
+                    <Link key={sub} to="/products">{sub}</Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
         <Link to="/cart" className={isActive('/cart') ? 'active cart-link' : 'cart-link'}>
           Cart
           {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
@@ -43,5 +65,6 @@ function Header({ cartItems = [], user, logout, mobileOpen, setMobileOpen }) {
     </header>
   );
 }
+
 
 export default Header;
