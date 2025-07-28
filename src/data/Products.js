@@ -912,4 +912,10 @@ const products = [
     description: "Chewy and crunchy black licorice!"
   }
 ];
-export default products;
+const updatedProducts = products.map(product => ({
+  ...product,
+  fullDescription: product.fullDescription || lorem,
+  "quantity-kilo": Math.floor(Math.random() * (16 - 3 + 1)) + 3
+}));
+
+export default updatedProducts;

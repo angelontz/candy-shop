@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { CartContext } from '../App';
+import { AuthContext } from '../context/AuthContext';
 import './Header.css';
 
-function Header({ cartItems = [], user, logout, mobileOpen, setMobileOpen }) {
+function Header() {
   const location = useLocation();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { cartItems } = useContext(CartContext);
+  const { user, logout } = useContext(AuthContext);
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const isActive = (path) => location.pathname === path;
@@ -52,16 +57,13 @@ function Header({ cartItems = [], user, logout, mobileOpen, setMobileOpen }) {
         </Link>
         {user ? (
           <>
+            <span className="user-name">{user.name}</span>
             <Link to="/profile" className={isActive('/profile') ? 'active' : ''}>Profile</Link>
             <button onClick={logout} className="logout-btn">Logout</button>
           </>
-        ) : null}
-        <Link
-          to={user ? '/profile' : '/login'}
-          className={isActive(user ? '/profile' : '/login') ? 'active' : ''}
-        >
-          {user ? user.name : 'Login'}
-        </Link>
+        ) : (
+          <Link to="/login" className={isActive('/login') ? 'active' : ''}>Login</Link>
+        )}
       </div>
 
       <button className="hamburger" onClick={() => setMobileOpen(!mobileOpen)}>
