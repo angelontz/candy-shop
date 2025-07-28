@@ -31,10 +31,15 @@ function Header({ cartItems = [], user, logout, mobileOpen, setMobileOpen }) {
           <div className="dropdown-menu">
             {categories.map((cat) => (
               <div key={cat.name} className="dropdown-category">
-                <span>{cat.name}</span>
+                <Link to={`/products?category=${encodeURIComponent(cat.name)}`}>{cat.name}</Link>
                 <div className="sub-menu">
                   {cat.subs.map((sub) => (
-                    <Link key={sub} to="/products">{sub}</Link>
+                    <Link
+                      key={sub}
+                      to={`/products?category=${encodeURIComponent(cat.name)}&subcategory=${encodeURIComponent(sub)}`}
+                    >
+                      {sub}
+                    </Link>
                   ))}
                 </div>
               </div>
