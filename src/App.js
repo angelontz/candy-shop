@@ -12,6 +12,7 @@ import Pickup from './pages/Pickup';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import { AuthProvider } from './context/AuthContext';
+import Payment from "./pages/Payment";
 
 
 // CartContext provides global state for cart items and actions throughout the app.

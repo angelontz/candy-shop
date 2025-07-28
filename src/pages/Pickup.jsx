@@ -57,7 +57,7 @@ function Pickup() {
             <p>Address: {selectedLocker.address}</p>
             <p>Postal Code: {selectedLocker.postalCode}</p>
           </div>
-          <a href="/profile" className="next-btn">
+          <a href="/payment" className="next-btn">
             Next
           </a>
         </>
