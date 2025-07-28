@@ -2,6 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import { CartContext } from '../App';
 import './Checkout.css';
 import '../components/CartSummary.css';
+import { Link } from 'react-router-dom';
 
 function Checkout() {
   const { cartItems } = useContext(CartContext);
@@ -32,7 +33,7 @@ function Checkout() {
       </ul>
       <div className="checkout-bar">
         <span className="total-amount">Total: € {total.toFixed(2)}</span>
-        <button className="checkout-btn">Next</button>
+        <Link to="/pickup" className="checkout-btn">Next</Link>
       </div>
     </div>
   );
