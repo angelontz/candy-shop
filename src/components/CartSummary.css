@@ -1,0 +1,30 @@
+.checkout-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffecf2;
+  padding: 1rem 2rem;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  border-top: 2px solid #e91e63;
+  margin-top: 1rem;
+}
+
+.total-amount {
+  color: #e91e63;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.checkout-btn {
+  background-color: #ffecf2;
+  color: #e91e63;
+  border: 1px solid #e91e63;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.checkout-btn:hover {
+  color: #a3165f;
+}

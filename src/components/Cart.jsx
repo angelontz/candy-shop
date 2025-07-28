@@ -6,7 +6,7 @@ function Cart() {
   const { cartItems } = useContext(CartContext);
 
   if (cartItems.length === 0) {
-    return <p>Your cart is empty.</p>;
+    return <p style={{ color: '#e91e63' }}>Your cart is empty.</p>;
   }
 
   return (

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Cart from '../components/Cart';
+import CartSummary from '../components/CartSummary';
 import { AuthContext } from '../context/AuthContext';
 
 function CartPage() {
@@ -10,6 +11,7 @@ function CartPage() {
     <div>
       <h1>{title}</h1>
       <Cart />
+      <CartSummary />
     </div>
   );
 }
