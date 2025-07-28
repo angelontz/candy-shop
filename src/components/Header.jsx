@@ -9,7 +9,7 @@ function Header() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const { cartItems } = useContext(CartContext);
   const { user, logout } = useContext(AuthContext);
-  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const cartCount = cartItems.length;
 
   const isActive = (path) => location.pathname === path;
 
