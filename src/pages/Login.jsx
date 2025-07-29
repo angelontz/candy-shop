@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { GoogleLogin } from '@react-oauth/google';
-import {jwtDecode} from 'jwt-decode';
-
+import { jwtDecode } from 'jwt-decode';
+import './Login.css';
 
 function Login() {
   const { login } = useContext(AuthContext);
@@ -14,32 +14,35 @@ function Login() {
       login({ name });
     }
   };
+
   const handleGoogleSuccess = (credentialResponse) => {
     if (credentialResponse.credential) {
       const decoded = jwtDecode(credentialResponse.credential);
-      login({ name: decoded.name || decoded.email || 'Unknown User' });
+      login({ name: decoded.name || decoded.email || 'Google User' });
     }
   };
 
   return (
-    <div>
+    <div className="login-page">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <input
-          placeholder="Name"
+          placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <button type="submit">Login</button>
       </form>
-      <GoogleLogin
-        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-        onSuccess={handleGoogleSuccess}
-        onError={(error) => {
-          console.error('Google login failed:', error);
-          alert('Google login failed. Please try again.');
-        }}
-      />
+
+      <div className="social-logins">
+        <div className="google-wrapper">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => alert('Google login failed')}
+            useOneTap={false}
+          />
+        </div>
+      </div>
     </div>
   );
 }
