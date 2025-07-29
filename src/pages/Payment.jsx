@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext, useMemo } from 'react';
 import { CartContext } from '../App';
+import { Link } from 'react-router-dom';
 import './Payment.css';
 
 function Payment() {
@@ -58,9 +59,11 @@ function Payment() {
         )}
 
         <div className="back-btn-wrapper">
-          <a href="/pickup" className="back-btn">
-            Back
-          </a>
+            <div className="back-btn-wrapper">
+            <Link to="/pickup" className="back-btn">
+              Back
+            </Link>
+          </div>
         </div>
       </div>
   );

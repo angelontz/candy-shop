@@ -81,9 +81,9 @@ function Pickup() {
             <p>Postal Code: {selectedLocker.postalCode}</p>
           </div>
           <div className="next-btn-wrapper">
-            <a href="/checkout" className="back-btn">
+            <Link to="/checkout" className="back-btn">
               Back
-            </a>
+            </Link>
             <Link to="/payment" className="next-btn">
               Next
             </Link>
