@@ -1,3 +1,36 @@
 .payment-page {
   padding: 1rem;
 }
+.order-summary {
+  margin-bottom: 1rem;
+}
+
+.order-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e91e63;
+}
+
+.order-item span {
+  color: #e91e63;
+}
+
+.total {
+  text-align: right;
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.locker-summary {
+  border: 1px solid #e91e63;
+  background-color: #ffecf2;
+  padding: 1rem;
+  border-radius: 4px;
+}

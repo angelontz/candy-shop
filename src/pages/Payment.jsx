@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useMemo } from 'react';
-import { CartContext } from '../App'; // Adjust path if needed
+import { CartContext } from '../App';
 import './Payment.css';
 
 function Payment() {
@@ -27,11 +27,19 @@ function Payment() {
         <div className="order-summary">
           <h2>Order Summary</h2>
           <ul className="order-list">
-            {cartItems.map((item, index) => (
-              <li key={index}>
-                {item.name} × {item.quantity} — € {(item.price * item.quantity).toFixed(2)}
-              </li>
-            ))}
+            {cartItems && cartItems.length > 0 ? (
+              cartItems.map((item) => (
+                item && item.id && item.name && typeof item.quantity === 'number' && typeof item.price === 'number' ? (
+                  <li key={item.id} className="order-item">
+                    <span>{item.name}</span>
+                    <span>{item.quantity.toFixed(1)} kg</span>
+                    <span>€ {(item.price * item.quantity).toFixed(2)}</span>
+                  </li>
+                ) : null
+              ))
+            ) : (
+              <li>No items in cart.</li>
+            )}
           </ul>
           <p className="total">
             <strong>Total: € {total.toFixed(2)}</strong>
