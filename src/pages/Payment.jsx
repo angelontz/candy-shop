@@ -49,14 +49,20 @@ function Payment() {
 
       {/* Locker Info Section */}
       {locker && (
-        <div className="locker-summary">
-          <h2>Delivery to BoxNow Locker</h2>
-          <p><strong>{locker.name}</strong></p>
-          <p>{locker.address}</p>
-          <p>{locker.postalCode}</p>
+          <div className="locker-summary">
+            <h2>Delivery to BoxNow Locker</h2>
+            <p><strong>{locker.name}</strong></p>
+            <p>{locker.address}</p>
+            <p>{locker.postalCode}</p>
+          </div>
+        )}
+
+        <div className="back-btn-wrapper">
+          <a href="/pickup" className="back-btn">
+            Back
+          </a>
         </div>
-      )}
-    </div>
+      </div>
   );
 }
 

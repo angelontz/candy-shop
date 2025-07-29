@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Pickup.css';
 
 function Pickup() {
@@ -80,9 +81,12 @@ function Pickup() {
             <p>Postal Code: {selectedLocker.postalCode}</p>
           </div>
           <div className="next-btn-wrapper">
-            <a href="/payment" className="next-btn">
-              Next
+            <a href="/checkout" className="back-btn">
+              Back
             </a>
+            <Link to="/payment" className="next-btn">
+              Next
+            </Link>
           </div>
         </>
       )}

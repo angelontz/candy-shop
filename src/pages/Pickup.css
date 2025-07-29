@@ -18,6 +18,7 @@
 
 .next-btn-wrapper {
   display: flex;
+  justify-content: space-between;
   justify-content: flex-end;
   margin-top: 2rem;
   margin-bottom: 5rem; /* space above the fixed footer */
@@ -34,6 +35,22 @@
 }
 
 .next-btn:hover {
+  color: #a3165f;
+}
+.boxnow-widget-button {
+  display: none;
+}
+.back-btn {
+  background-color: #ffecf2;
+  color: #e91e63;
+  border: 1px solid #e91e63;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.back-btn:hover {
   color: #a3165f;
 }
 .boxnow-widget-button {
