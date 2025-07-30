@@ -57,8 +57,12 @@ function Header() {
         </Link>
         {user ? (
           <>
-            <span className="user-name">{user.name}</span>
-            <Link to="/profile" className={isActive('/profile') ? 'active' : ''}>Profile</Link>
+            <Link
+              to="/profile"
+              className={`${isActive('/profile') ? 'active ' : ''}user-name`}
+            >
+              {user.name}
+            </Link>
             <button onClick={logout} className="logout-btn">Logout</button>
           </>
         ) : (
