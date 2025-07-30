@@ -45,3 +45,12 @@
 .add-to-cart-btn:hover {
   color: #a3165f;
 }
+@media (max-width: 768px) {
+  .product-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-details .product-card {
+    width: 100%;
+  }
+}

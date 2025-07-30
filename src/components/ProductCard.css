@@ -50,3 +50,8 @@
 .remove-btn:hover {
   color: #a3165f;
 }
+@media (max-width: 480px) {
+  .remove-btn {
+    width: 100%;
+  }
+}

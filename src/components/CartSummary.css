@@ -28,3 +28,12 @@
 .checkout-btn:hover {
   color: #a3165f;
 }
+@media (max-width: 600px) {
+  .checkout-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .total-amount {
+    text-align: center;
+  }
+}

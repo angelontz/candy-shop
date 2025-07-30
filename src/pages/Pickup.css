@@ -56,3 +56,12 @@
 .boxnow-widget-button {
   display: none;
 }
+@media (max-width: 600px) {
+  #boxnowmap {
+    height: 600px;
+  }
+  .next-btn-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

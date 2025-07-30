@@ -18,3 +18,10 @@
 .order-item span {
   color: #e91e63;
 }
+@media (max-width: 600px) {
+  .order-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
