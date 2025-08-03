@@ -7,7 +7,7 @@ import './Header.css';
 function Header() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { cartItems } = useContext(CartContext);
+  const { cartItems = [] } = useContext(CartContext);
   const { user, logout } = useContext(AuthContext);
   const cartCount = cartItems.length;
 
@@ -21,11 +21,12 @@ function Header() {
     { name: 'Licorice', subs: ['Red Licorice', 'Black Licorice'] },
   ];
 
-  return (
+return (
+  <>
     <header className="navbar">
       <div className="navbar-left">
         <Link to="/">
-          <img src="/logo.png" alt="Καραμελο Κοσμος Logo" className="logo" />
+          <img src="/logo.png" alt="ΚαραμελοΚοσμος Logo" className="logo" />
         </Link>
       </div>
 
@@ -74,8 +75,15 @@ function Header() {
         ☰
       </button>
     </header>
-  );
+    {/* Floating Cart - Mobile Only */}
+    {cartItems.length > 0 && (
+      <Link to="/cart" className="floating-cart-mobile">
+        🛒 {cartItems.reduce((sum, i) => sum + i.quantity, 0).toFixed(1)}kg – €
+        {cartItems.reduce((sum, i) => sum + i.price * i.quantity, 0).toFixed(2)}
+      </Link>
+    )}
+  </>
+);
 }
-
 
 export default Header;
