@@ -156,3 +156,27 @@
     display: block;
   }
 }
+.floating-cart-mobile {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #e91e63;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.floating-cart-mobile:hover {
+  background-color: #a3165f;
+}
+
+@media (min-width: 768px) {
+  .floating-cart-mobile {
+    display: none;
+  }
+}
