@@ -33,7 +33,7 @@ function Checkout() {
       </ul>
       <div className="checkout-bar">
         <span className="total-amount">Total: € {total.toFixed(2)}</span>
-        <Link to="/pickup" className="checkout-btn">Next</Link>
+        <Link to="/customer-info" className="checkout-btn">Next</Link>
       </div>
     </div>
   );

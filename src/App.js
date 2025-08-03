@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import { AuthProvider } from './context/AuthContext';
 import Payment from "./pages/Payment";
+import CustomerInfo from './pages/CustomerInfo';
 
 
 // CartContext provides global state for cart items and actions throughout the app.
@@ -34,6 +35,7 @@ function App() {
               <Route path="/product/:id" element={<ProductDetails />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/customer-info" element={<CustomerInfo />} />
               <Route path="/pickup" element={<Pickup />} />
               <Route path="/payment" element={<Payment />} />
               <Route path="/login" element={<Login />} />

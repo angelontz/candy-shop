@@ -23,5 +23,5 @@ test('shows link to pickup page', () => {
     </CartContext.Provider>
   );
   const link = screen.getByRole('link', { name: /next/i });
-  expect(link).toHaveAttribute('href', '/pickup');
+  expect(link).toHaveAttribute('href', '/customer-info');
 });

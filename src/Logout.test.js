@@ -30,7 +30,7 @@ test('redirects to login after logout', async () => {
   await user.type(screen.getByPlaceholderText(/name/i), 'test');
   await user.click(screen.getByRole('button', { name: /login/i }));
 
-  expect(screen.getByText(/welcome test/i)).toBeInTheDocument();
+  expect(screen.getByText(/welcome, test!/i)).toBeInTheDocument();
   const [logoutButton] = screen.getAllByRole('button', { name: /logout/i });
   await user.click(logoutButton);
 
