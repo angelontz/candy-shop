@@ -6,10 +6,8 @@ import './Header.css';
 
 function Header() {
   const location = useLocation();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { cartItems = [] } = useContext(CartContext);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { cartItems } = useContext(CartContext);
+  const { cartItems = [] } = useContext(CartContext);
   const { user, logout } = useContext(AuthContext);
   const cartCount = cartItems.length;
 
@@ -82,14 +80,7 @@ function Header() {
     window.addEventListener('touchend', stopMove);
   };
 
-return (
-  <>
-    <header className="navbar">
-      <div className="navbar-left">
-        <Link to="/">
-          <img src="/logo.png" alt="ΚαραμελοΚοσμος Logo" className="logo" />
-        </Link>
-      </div>
+// Remove this duplicate and incomplete return block
   return (
     <>
       <header className="navbar">
