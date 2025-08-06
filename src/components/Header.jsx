@@ -7,6 +7,8 @@ import './Header.css';
 function Header() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [showCategories, setShowCategories] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(null);
   const { cartItems = [] } = useContext(CartContext);
   const { user, logout } = useContext(AuthContext);
   const cartCount = cartItems.length;
@@ -21,7 +23,6 @@ function Header() {
     { name: 'Licorice', subs: ['Red Licorice', 'Black Licorice'] },
   ];
 
-  // Floating cart drag state
   const cartRef = useRef(null);
   const pos = useRef({ x: 0, y: 0, startX: 0, startY: 0 });
 
@@ -80,43 +81,120 @@ function Header() {
     window.addEventListener('touchend', stopMove);
   };
 
-// Remove this duplicate and incomplete return block
   return (
     <>
       <header className="navbar">
-        <div className="navbar-left">
+        <div className="navbar-mobile">
+          <div className="hamburger-container">
+            <button className="hamburger" onClick={() => setMobileOpen(!mobileOpen)}>
+              ☰
+            </button>
+          </div>
+          <Link to="/">
+            <img src="/logo.png" alt="Καραμελο Κοσμος Logo" className="logo" />
+          </Link>
+          {!user && (
+            <Link to="/login" className="login-icon mobile-only">
+              <img src="/profile-icon.png" alt="Login Icon" className="login-icon-img" />
+            </Link>
+          )}
+        </div>
+
+        <div className="navbar-left desktop-only">
           <Link to="/">
             <img src="/logo.png" alt="Καραμελο Κοσμος Logo" className="logo" />
           </Link>
         </div>
 
-        <div className={`navbar-right ${mobileOpen ? 'open' : ''}`}>
+        <div
+          className={`navbar-right mobile-fullscreen ${mobileOpen ? 'open' : ''}`}
+          onClick={(e) => {
+            if (!e.target.closest('.dropdown-menu') && !e.target.closest('.category-toggle')) {
+              setMobileOpen(false);
+              setShowCategories(false);
+              setActiveCategory(null);
+            }
+          }}
+        >
           <Link to="/" className={isActive('/') ? 'active' : ''}>Home</Link>
-          <div className="dropdown">
-            <Link to="/products" className={isActive('/products') ? 'active' : ''}>Products</Link>
-            <div className="dropdown-menu">
-              {categories.map((cat) => (
-                <div key={cat.name} className="dropdown-category">
-                  <Link to={`/products?category=${encodeURIComponent(cat.name)}`}>{cat.name}</Link>
-                  <div className="sub-menu">
-                    {cat.subs.map((sub) => (
-                      <Link
-                        key={sub}
-                        to={`/products?category=${encodeURIComponent(cat.name)}&subcategory=${encodeURIComponent(sub)}`}
-                      >
-                        {sub}
-                      </Link>
-                    ))}
+          <button
+            className={`category-toggle ${showCategories ? 'open' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowCategories(!showCategories);
+              setActiveCategory(null);
+            }}
+          >
+            Categories
+          </button>
+          {showCategories && (
+            <div className="dropdown-menu visible">
+              {activeCategory === null ? (
+                categories.map((cat) => (
+                  <div key={cat.name} className="dropdown-category">
+                    <button
+                      className="subcategory-toggle"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveCategory(cat.name);
+                      }}
+                    >
+                      {cat.name}
+                    </button>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <>
+                  <button
+                    className="subcategory-toggle back"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveCategory(null);
+                    }}
+                  >
+                    ← Back
+                  </button>
+                  <div className="dropdown-category">
+                    <Link
+                      to={`/products?category=${encodeURIComponent(activeCategory)}`}
+                      onClick={() => {
+                        setShowCategories(false);
+                        setMobileOpen(false);
+                        setActiveCategory(null);
+                      }}
+                    >
+                      View All {activeCategory}
+                    </Link>
+                    <div className="sub-menu">
+                      {categories.find((c) => c.name === activeCategory)?.subs.map((sub) => (
+                        <Link
+                          key={sub}
+                          to={`/products?category=${encodeURIComponent(activeCategory)}&subcategory=${encodeURIComponent(sub)}`}
+                          onClick={() => {
+                            setShowCategories(false);
+                            setMobileOpen(false);
+                            setActiveCategory(null);
+                          }}
+                        >
+                          {sub}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
-          </div>
+          )}
           <Link to="/cart" className={isActive('/cart') ? 'active cart-link' : 'cart-link'}>
             Cart
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </Link>
-          {user ? (
+          {!user && (
+            <Link to="/login" className="login-icon desktop-only">
+              <img src="/profile-icon.png" alt="Login Icon" className="login-icon-img" />
+            </Link>
+          )}
+          {user && (
             <>
               <Link
                 to="/profile"
@@ -126,14 +204,8 @@ function Header() {
               </Link>
               <button onClick={logout} className="logout-btn">Logout</button>
             </>
-          ) : (
-            <Link to="/login" className={isActive('/login') ? 'active' : ''}>Login</Link>
           )}
         </div>
-
-        <button className="hamburger" onClick={() => setMobileOpen(!mobileOpen)}>
-          ☰
-        </button>
       </header>
 
       {cartItems.length > 0 && (

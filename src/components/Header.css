@@ -1,205 +1,208 @@
+/* Logo and Layout */
+.logo {
+  height: 40px;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ffecf2;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
+  padding: 0.5rem 1rem;
+  position: relative;
   z-index: 1000;
 }
 
-.logo {
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
+/* Desktop Navigation */
+.navbar-left {
+  display: flex;
+  align-items: center;
 }
 
 .navbar-right {
   display: flex;
-  gap: 1.5rem;
   align-items: center;
-}
-.dropdown {
-  position: relative;
+  gap: 1rem;
 }
 
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #ffecf2;
-  padding: 0.5rem 1rem;
-  border: 1px solid #e91e63;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
-  white-space: nowrap;
-  flex-direction: column;
-  font-weight: bold;
-  color: #e91e63;
-  border-radius: 12px;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: flex;
-}
-
-.dropdown-category {
-  position: relative;
-  padding: 0.25rem 0;
-}
-
-.dropdown-category > span {
-  display: block;
-  margin: 0.25rem 0;
-}
-
-
-.sub-menu {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 100%;
-  left: auto;
-  background-color: #ffecf2;
-  padding: 0.5rem 1rem;
-  border: 1px solid #e91e63;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  white-space: nowrap;
-  flex-direction: column;
-  font-weight: bold;
-  color: #e91e63;
-}
-
-.dropdown-category:hover .sub-menu {
-  display: flex;
-}
-
-.sub-menu a {
-  display: block;
-  margin: 0.25rem 0;
-}
-
-.navbar-right a {
+.navbar-right a,
+.logout-btn {
   text-decoration: none;
   color: #e91e63;
   font-weight: bold;
-  font-size: 1rem;
-  position: relative;
-  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.logout-btn {
+.cart-badge {
+  background-color: #e91e63;
+  color: white;
+  border-radius: 50%;
+  padding: 0.25rem 0.5rem;
+  margin-left: 0.25rem;
+}
+
+/* Mobile Layout */
+.navbar-mobile {
+  display: none;
+}
+.hamburger-container {
+  position: relative;
+  z-index: 2001; /* higher than mobile menu */
+  
+}
+
+.hamburger {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #e91e63;
+  cursor: pointer;
+  z-index: 2001;
+  padding-bottom: 0.5rem;
+}
+.login-icon-img {
+  height: 28px;
+  width: 28px;
+  object-fit: contain;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Floating Cart Icon */
+.floating-cart-mobile {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #e91e63;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 50%;
+  z-index: 1000;
+  cursor: grab;
+}
+
+.cart-badge-bubble {
+  background: white;
+  color: #e91e63;
+  border-radius: 50%;
+  padding: 0.25rem 0.5rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+/* Category Toggle Button */
+.category-toggle {
   background: none;
   border: none;
   color: #e91e63;
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  position: relative;
+  padding: 0.5rem 0;
 }
 
-.logout-btn:hover {
-  color: #a3165f;
+.category-toggle::before {
+  content: "▶";
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
 
-.user-name {
-  font-weight: bold;
-  color: #e91e63;
+.category-toggle.open::before {
+  transform: rotate(90deg);
 }
 
-.navbar-right a:hover,
-.navbar-right a.active {
-  color: #a3165f;
-}
-
-.cart-badge {
-  background-color: #e91e63;
-  color: white;
-  font-size: 0.75rem;
-  padding: 2px 6px;
-  border-radius: 12px;
-  position: absolute;
-  top: -8px;
-  right: -12px;
-}
-
-.hamburger {
-  display: none;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: #e91e63;
-}
-
+/* Mobile Fullscreen Menu */
 @media (max-width: 768px) {
-  .navbar-right {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background-color: #ffecf2;
-    padding: 1rem;
-    border-left: 2px solid #e91e63;
-    box-shadow: -2px 2px 5px rgba(0,0,0,0.1);
+  .navbar-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
 
-  .navbar-right.open {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: inline-block;
+  }
+
+  .navbar-right.mobile-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 50vw;
+    background-color: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+    z-index: 999;
+    display: none;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .navbar-right.mobile-fullscreen.open {
     display: flex;
   }
 
-  .hamburger {
+  .dropdown-menu.visible {
+    display: block;
+    background-color: #fff;
+    border: 1px solid #e91e63;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .dropdown-category {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .subcategory-toggle {
+    background: none;
+    border: none;
+    color: #e91e63;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0;
+    text-align: left;
+    width: 100%;
     display: block;
   }
-}
-.floating-cart-mobile {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 1000;
-  touch-action: none;
-  cursor: grab;
-}
 
-.floating-cart-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e91e63;
-  color: white;
-  font-size: 1.5rem;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  position: relative;
-}
+  .subcategory-toggle.back {
+    color: #a3165f;
+    margin-bottom: 1rem;
+  }
 
-.floating-cart-content:hover {
-  background-color: #a3165f;
-}
+  .sub-menu {
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    overflow-x: hidden;
+  }
 
-.cart-badge-bubble {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background-color: white;
-  color: #e91e63;
-  font-size: 0.75rem;
-  font-weight: bold;
-  border-radius: 999px;
-  padding: 2px 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-@media (min-width: 768px) {
-  .floating-cart-mobile {
-    display: none;
+  .sub-menu a {
+    color: #a3165f;
+    font-size: 0.95rem;
+    margin: 0.25rem 0;
+    display: block;
+    text-decoration: none;
+    width: 100%;
   }
 }
