@@ -7,8 +7,6 @@ import './Header.css';
 function Header() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [showCategories, setShowCategories] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(null);
   const { cartItems = [] } = useContext(CartContext);
   const { user, logout } = useContext(AuthContext);
   const cartCount = cartItems.length;
@@ -81,12 +79,16 @@ function Header() {
     window.addEventListener('touchend', stopMove);
   };
 
+  const handleLinkClick = () => {
+    setMobileOpen(false);
+  };
+
   return (
     <>
       <header className="navbar">
         <div className="navbar-mobile">
           <div className="hamburger-container">
-            <button className="hamburger" onClick={() => setMobileOpen(!mobileOpen)}>
+            <button className="hamburger" onClick={() => setMobileOpen((prev) => !prev)}>
               ☰
             </button>
           </div>
@@ -106,106 +108,101 @@ function Header() {
           </Link>
         </div>
 
-        <div
-          className={`navbar-right mobile-fullscreen ${mobileOpen ? 'open' : ''}`}
-          onClick={(e) => {
-            if (!e.target.closest('.dropdown-menu') && !e.target.closest('.category-toggle')) {
-              setMobileOpen(false);
-              setShowCategories(false);
-              setActiveCategory(null);
-            }
-          }}
-        >
-          <Link to="/" className={isActive('/') ? 'active' : ''}>Home</Link>
-          <button
-            className={`category-toggle ${showCategories ? 'open' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              setShowCategories(!showCategories);
-              setActiveCategory(null);
-            }}
-          >
-            Categories
-          </button>
-          {showCategories && (
-            <div className="dropdown-menu visible">
-              {activeCategory === null ? (
-                categories.map((cat) => (
+        {mobileOpen && (
+          <div className={`navbar-right mobile-fullscreen open`}>
+            <Link to="/" onClick={handleLinkClick} className={isActive('/') ? 'active' : ''}>Home</Link>
+            <div className="dropdown">
+              <span className="category-toggle">Products</span>
+              <div className="dropdown-menu">
+                {categories.map((cat) => (
                   <div key={cat.name} className="dropdown-category">
-                    <button
-                      className="subcategory-toggle"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setActiveCategory(cat.name);
-                      }}
-                    >
-                      {cat.name}
-                    </button>
-                  </div>
-                ))
-              ) : (
-                <>
-                  <button
-                    className="subcategory-toggle back"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveCategory(null);
-                    }}
-                  >
-                    ← Back
-                  </button>
-                  <div className="dropdown-category">
-                    <Link
-                      to={`/products?category=${encodeURIComponent(activeCategory)}`}
-                      onClick={() => {
-                        setShowCategories(false);
-                        setMobileOpen(false);
-                        setActiveCategory(null);
-                      }}
-                    >
-                      View All {activeCategory}
-                    </Link>
+                    <Link to={`/products?category=${encodeURIComponent(cat.name)}`} onClick={handleLinkClick}>{cat.name}</Link>
                     <div className="sub-menu">
-                      {categories.find((c) => c.name === activeCategory)?.subs.map((sub) => (
+                      {cat.subs.map((sub) => (
                         <Link
                           key={sub}
-                          to={`/products?category=${encodeURIComponent(activeCategory)}&subcategory=${encodeURIComponent(sub)}`}
-                          onClick={() => {
-                            setShowCategories(false);
-                            setMobileOpen(false);
-                            setActiveCategory(null);
-                          }}
+                          to={`/products?category=${encodeURIComponent(cat.name)}&subcategory=${encodeURIComponent(sub)}`}
+                          onClick={handleLinkClick}
                         >
                           {sub}
                         </Link>
                       ))}
                     </div>
                   </div>
-                </>
-              )}
+                ))}
+              </div>
             </div>
-          )}
-          <Link to="/cart" className={isActive('/cart') ? 'active cart-link' : 'cart-link'}>
-            Cart
-            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
-          </Link>
-          {!user && (
-            <Link to="/login" className="login-icon desktop-only">
-              <img src="/profile-icon.png" alt="Login Icon" className="login-icon-img" />
+            <Link to="/cart" className={isActive('/cart') ? 'active cart-link' : 'cart-link'} onClick={handleLinkClick}>
+              Cart
+              {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
             </Link>
-          )}
-          {user && (
-            <>
-              <Link
-                to="/profile"
-                className={`${isActive('/profile') ? 'active ' : ''}user-name`}
-              >
-                {user.name}
+            {!user && (
+              <Link to="/login" className="login-icon" onClick={handleLinkClick}>
+                <img src="/profile-icon.png" alt="Login Icon" className="login-icon-img" />
               </Link>
-              <button onClick={logout} className="logout-btn">Logout</button>
-            </>
-          )}
-        </div>
+            )}
+            {user && (
+              <>
+                <Link
+                  to="/profile"
+                  className={`${isActive('/profile') ? 'active ' : ''}user-name`}
+                  onClick={handleLinkClick}
+                >
+                  {user.name}
+                </Link>
+                <button onClick={() => { logout(); handleLinkClick(); }} className="logout-btn">Logout</button>
+              </>
+            )}
+          </div>
+        )}
+
+        {!mobileOpen && (
+          <div className={`navbar-right desktop-only`}>
+            <Link to="/" className={isActive('/') ? 'active' : ''}>Home</Link>
+            <div className="dropdown">
+              <span className="category-toggle">Products</span>
+              <div className="dropdown-menu">
+                {categories.map((cat) => (
+                  <div key={cat.name} className="dropdown-category">
+                    <Link to={`/products?category=${encodeURIComponent(cat.name)}`}>{cat.name}</Link>
+                    <div className="sub-menu">
+                      {cat.subs.map((sub) => (
+                        <Link
+                          key={sub}
+                          to={`/products?category=${encodeURIComponent(cat.name)}&subcategory=${encodeURIComponent(sub)}`}
+                        >
+                          {sub}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <Link to="/cart" className={isActive('/cart') ? 'active cart-link' : 'cart-link'}>
+              Cart
+              {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+            </Link>
+
+            {!user && (
+              <Link to="/login" className="login-icon desktop-only">
+                <img src="/profile-icon.png" alt="Login Icon" className="login-icon-img" />
+              </Link>
+            )}
+            {user && (
+              <>
+                <Link
+                  to="/profile"
+                  className={`${isActive('/profile') ? 'active ' : ''}user-name`}
+                >
+                  {user.name}
+                </Link>
+                <button onClick={logout} className="logout-btn">Logout</button>
+              </>
+            )}
+          </div>
+        )}
       </header>
 
       {cartItems.length > 0 && (

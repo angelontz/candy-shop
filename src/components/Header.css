@@ -43,14 +43,69 @@
   margin-left: 0.25rem;
 }
 
+/* Dropdown container for desktop */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #e91e63;
+  padding: 1rem;
+  border-radius: 8px;
+  min-width: 200px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Category in desktop dropdown */
+.dropdown-category {
+  margin-bottom: 0.75rem;
+}
+
+.dropdown-category > a {
+  font-weight: bold;
+  color: #e91e63;
+  display: block;
+  margin-bottom: 0.25rem;
+  text-decoration: none;
+}
+
+/* Sub-menu under each category */
+.sub-menu {
+  padding-left: 1rem;
+}
+
+.sub-menu a {
+  display: block;
+  font-size: 0.9rem;
+  color: #a3165f;
+  margin-bottom: 0.2rem;
+  text-decoration: none;
+}
+
 /* Mobile Layout */
 .navbar-mobile {
   display: none;
 }
+
 .hamburger-container {
   position: relative;
-  z-index: 2001; /* higher than mobile menu */
-  
+  z-index: 2001;
 }
 
 .hamburger {
@@ -62,6 +117,7 @@
   z-index: 2001;
   padding-bottom: 0.5rem;
 }
+
 .login-icon-img {
   height: 28px;
   width: 28px;
@@ -153,6 +209,10 @@
 
   .navbar-right.mobile-fullscreen.open {
     display: flex;
+  }
+
+  .dropdown.desktop-only:hover .dropdown-menu {
+    display: none;
   }
 
   .dropdown-menu.visible {
