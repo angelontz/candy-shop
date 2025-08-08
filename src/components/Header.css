@@ -165,15 +165,7 @@
   padding: 0.5rem 0;
 }
 
-.category-toggle::before {
-  content: "▶";
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
 
-.category-toggle.open::before {
-  transform: rotate(90deg);
-}
 
 /* Mobile Fullscreen Menu */
 @media (max-width: 768px) {
@@ -191,6 +183,16 @@
   .mobile-only {
     display: inline-block;
   }
+  .category-toggle::before {
+    content: "▶";
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .category-toggle.open::before {
+    transform: rotate(90deg);
+  }
+
 
   .navbar-right.mobile-fullscreen {
     position: fixed;
