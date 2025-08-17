@@ -196,9 +196,9 @@
 
   .navbar-right.mobile-fullscreen {
     position: fixed;
-    top: 0;
+    top: 3.5rem;
     left: 0;
-    height: 100vh;
+    height: calc(100vh - 3.5rem);
     width: 50vw;
     background-color: #fff;
     flex-direction: column;
